@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 
+import classNames from "classnames";
 import { withStyles } from '@material-ui/core/styles';
 
 /* React Routing */
 import { createBrowserHistory } from "history";
-import { Router, Route, Switch } from "react-router-dom";
 
+import CustomRouter from './routes/CustomRouter';
 import indexRoutes from '../src/routes/index';
 
 /* Material UI */
@@ -22,14 +21,19 @@ import { AccountCircle } from '@material-ui/icons';
 const hist = createBrowserHistory();
 
 const styles = {
+  app: {},
   flex: {
     flex: 1
+  },
+  hideHeader: {
+    display: "none"
   }
 }
 
 class App extends Component {
   state = {
-    anchorEl: null
+    anchorEl: null,
+    showHeader: true
   }
 
   handleMenu = event => {
@@ -40,20 +44,20 @@ class App extends Component {
     this.setState({ anchorEl: null });
   }
 
+  handleRouteChange = flag => {
+    this.setState({ showHeader: flag })
+  }
+  
   render() {
     const { classes } = this.props;
     const { anchorEl } = this.state;
+    const headerClass = classNames({
+      [classes.hideHeader]: !this.state.showHeader
+    })
     const open = Boolean(this.state.anchorEl);
     return (
-      <div className="App">
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p> */}
-          <AppBar position="static">
+      <div className={classes.app}>
+          <AppBar position="static" className={headerClass}>
             <Toolbar>
               <Typography variant="title" color="inherit" className={classes.flex}>
                 Title
@@ -82,16 +86,8 @@ class App extends Component {
               </div>
             </Toolbar>
           </AppBar>
-          <Router history={hist}>
-            <Switch>
-              {indexRoutes.map((prop, key) => {
-                if (prop.exact)
-                  return <Route exact path={prop.path} component={prop.component} key={key}></Route>
-                else
-                  return <Route path={prop.path} component={prop.component} key={key}></Route>
-              })}
-            </Switch>
-          </Router>
+          <CustomRouter history={hist} routes={indexRoutes} 
+            onRouteChange={(flag) => this.handleRouteChange(flag)}/>
       </div>
     );
   }

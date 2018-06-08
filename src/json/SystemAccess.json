@@ -1,0 +1,14 @@
+[
+    {"id": "1", "label": "All Jobs", "type": "radio", "options": [{"id": "11", "label": "yes"}, {"id": "12", "label": "no"}]},
+    {"id": "2", "label": "Contacts", "type": "radio", "options": [{"id": "21", "label": "yes"}, {"id": "22", "label": "no"}]},
+    {"id": "3", "label": "Department in Global Schedule", "type": "radio", "options": [{"id": "31", "label": "yes"}, {"id": "32", "label": "no"}]},
+    {"id": "4", "label": "Enable Time Tracking", "type": "radio", "options": [{"id": "41", "label": "none"}, {"id": "42", "label": "view"}, {"id": "43", "label": "edit"}]},
+    {"id": "5", "label": "Login as Client", "type": "radio", "options": [{"id": "51", "label": "yes"}, {"id": "52", "label": "no"}]},
+    {"id": "6", "label": "Login as User", "type": "radio", "options": [{"id": "61", "label": "yes"}, {"id": "62", "label": "no"}]},
+    {"id": "7", "label": "Login as Vendor", "type": "radio", "options": [{"id": "71", "label": "yes"}, {"id": "72", "label": "no"}]},
+    {"id": "8", "label": "Login to Poet", "type": "radio", "options": [{"id": "81", "label": "yes"}, {"id": "82", "label": "no"}]},
+    {"id": "9", "label": "Login to Versionlists", "type": "radio", "options": [{"id": "91", "label": "yes"}, {"id": "92", "label": "no"}]},
+    {"id": "10", "label": "New Job", "type": "radio", "options": [{"id": "101", "label": "yes"}, {"id": "102", "label": "no"}]},
+    {"id": "11", "label": "All Jobs", "type": "radio", "options": [{"id": "111", "label": "yes"}, {"id": "112", "label": "no"}]},
+    {"id": "12", "label": "All Jobs", "type": "radio", "options": [{"id": "121", "label": "yes"}, {"id": "122", "label": "no"}]}
+]
