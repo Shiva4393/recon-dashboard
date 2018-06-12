@@ -14,7 +14,7 @@ import theme from './theme/custom-theme';
 
 ReactDOM.render(
     <MuiThemeProvider theme={theme}>
-        <BrowserRouter basename={'/build'}>
+        <BrowserRouter>
             <App />
         </BrowserRouter>
     </MuiThemeProvider>
