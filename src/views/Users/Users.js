@@ -27,9 +27,22 @@ class Users extends Component {
         // axios.get('getUserTypesAndCompanies')
         // .then((res) => console.log(res))
         role.permissions = {
-            system_acces: {1: "11", 2: "22", 3: "32", 4: "41", 5: "51", 6: "62", 7: "72", 8: "81", 9: "92", 10: "101", 11: "112", 12: "122"}
+            system_access: {1: "11", 2: "22", 3: "32", 4: "41", 5: "51", 6: "62", 7: "72", 8: "81", 9: "92", 10: "101", 11: "112", 12: "122"}
         }
         this.setState({ selectedRole: role });
+    }
+
+    updatePermissions = (val, prop, perm) => {
+        const updatedRole = {
+            ...this.state.selectedRole
+        }
+        const updatedPermission = {
+            ...updatedRole.permissions[prop]
+        }
+
+        updatedPermission[perm.id] = val;
+        updatedRole.permissions[prop] = updatedPermission;
+        this.setState({ selectedRole: updatedRole });
     }
 
     render() {
@@ -43,7 +56,7 @@ class Users extends Component {
                     </GridItem>
                     <GridItem xs={6} sm={8} md={9}>
                         <UserDetails selectedData={this.state.selectedRole} 
-                        tabs={tabs}/>
+                            tabs={tabs} handleChange={this.updatePermissions} />
                     </GridItem>
                 </GridContainer>
             </div>

@@ -59,18 +59,7 @@ class Dashboard extends Component {
 
                 <AddNewTask open={this.state.open} closeModal={this.closeModal} />
 
-                
             </GridContainer>
-            // <div className={classes.conatinerFluid}>
-            //     {this.state.navigations.map((nav) => {
-            //         return <NavigationBlock
-            //                     // className={classes.}
-            //                     key={nav.key}
-            //                     labelText={nav.labelText} 
-            //                     badgeProps={nav.badgeProps}
-            //                 />
-            //     })}
-            // </div>
         )
     }
 }

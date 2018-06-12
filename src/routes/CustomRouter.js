@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 /* React Router Dom */
 import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { createBrowserHistory } from "history";
+
+const hist = createBrowserHistory();
 
 class CustomRouter extends Component {
     componentWillMount() {
-        if (this.props.history.location.pathname.match('404')) this.props.onRouteChange(false);
-        else this.props.onRouteChange(true);
-        this.unlisten = this.props.history.listen((location, action) => {
-            if (location.pathname.match('404'))
-                this.props.onRouteChange(false)
-            else
-                this.props.onRouteChange(true)
+        this.props.onRouteChange(hist.location);
+        this.unlisten = hist.listen((location, action) => {
+            this.props.onRouteChange(location);
         })
     }
     componentWillUnmount() {
@@ -18,19 +17,19 @@ class CustomRouter extends Component {
     }
 
     render() {
-        const { history, routes } = this.props;
+        const { routes } = this.props;
         return (
-            <Router history={history}>
+            <Router history={hist}>
                 <Switch>
                     {routes.map((prop, key) => {
                         if (prop.exact)
                             return <Route exact path={prop.path} key={key} render={() => (
-                                <Redirect to={`${process.env.PUBLIC_URL}/dashboard`} />
-                            )}></Route>
+                                <Redirect to={prop.redirect} />
+                            )} />
                         else
-                            return <Route path={prop.path} component={prop.component} key={key}></Route>
+                            return <Route path={prop.path} component={prop.component} key={key} />
                     })}
-                    <Route render={() => (<Redirect to={`${process.env.PUBLIC_URL}/404`} />)}></Route>
+                    <Route render={() => (<Redirect to={`${process.env.PUBLIC_URL}/404`} />)} />
                 </Switch>
             </Router>
         )

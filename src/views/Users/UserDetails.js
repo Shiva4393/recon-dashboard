@@ -36,7 +36,7 @@ function SystemAccess({ ...props }) {
                             <ListItemSecondaryAction>
                                 <RadioGroup aria-label={perm.label} name={perm.label}
                                     value={permission[perm.id]}
-                                    onChange={(ev) => props.handleChange(ev, perm)}
+                                    onChange={(ev) => props.handleChange(ev, 'system_access', perm)}
                                     style={{display: 'block'}}>
                                     {perm.options.map((option, key) => {
                                         return <FormControlLabel key={key} value={option.id} control={<Radio color="primary" />} label={option.label} />
@@ -71,8 +71,10 @@ class UserDetails extends Component {
     handleChange = (ev, val) => {
         this.setState({value: val});
     }
-    handleChangePermission = (ev, permission) => {
-        console.log(arguments);
+    handleChangePermission = (ev, prop, permission) => {
+        let val = ev.target.value;
+        this.props.handleChange(val, prop, permission)
+        
     }
     render() {
         const { classes, selectedData, tabs } = this.props;
@@ -89,7 +91,7 @@ class UserDetails extends Component {
                 <GridContainer justify="flex-start">
                     <GridItem xs={12} sm={9} md={10}>
                         {this.state.value === 0 && <SystemAccess
-                            permission={selectedData.permissions.system_acces} 
+                            permission={selectedData.permissions.system_access} 
                             handleChange={this.handleChangePermission} />}
                         {this.state.value === 1 && <JobAccess />}
                         {this.state.value === 2 && <Users />}
