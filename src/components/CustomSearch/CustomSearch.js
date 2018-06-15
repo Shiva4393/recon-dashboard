@@ -54,7 +54,7 @@ class CustomSearch extends Component {
     render () {
         return (
             <div>
-                <Input
+                <Input fullWidth={this.props.fullWidth}
                     onChange={this.handleChange}
                     value={this.state.value}
                     placeholder="Search"
